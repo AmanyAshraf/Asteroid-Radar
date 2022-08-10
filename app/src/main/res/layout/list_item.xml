@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
+        <variable
+            name="clickListener"
+            type="com.udacity.asteroidradar.main.AsteroidClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onClick(asteroid)}">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/default_text_color"
+            android:text="@{asteroid.codename}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="6896 (2011 KB87)" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/default_text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="2020-02-08" />
+
+        <ImageView
+            android:id="@+id/status"
+            android:contentDescription="@string/potentially_hazardous_asteroid_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:statusIcon="@{asteroid.isPotentiallyHazardous}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_status_normal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
